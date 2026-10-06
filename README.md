@@ -155,9 +155,3 @@ differ slightly between runs.
   learning it from non-holdout entities only would make validation fully label-clean.
 * About 0.67% of true pairs are missed by blocking; `blocking_misses.tsv` and `oof_errors.tsv` list
   concrete cases.
-
-## Citation
-
-```bibtex
-% TODO: add BibTeX entry
-```
