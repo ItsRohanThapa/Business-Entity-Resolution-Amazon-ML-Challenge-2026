@@ -13,17 +13,16 @@ The full write-up is in [`docs/documentation.pdf`](docs/documentation.pdf).
 
 ## Pipeline
 
-```
-input (S1, S2, S3)
-  -> normalisation      Indic romanisation, legal forms, DBA aliases, abbreviations, postal / house numbers
-  -> blocking           6 retrieval passes within each country label: ALL, NAME, ADDRESS, REVERSE keys
-                        + multilingual-e5-small embeddings of normalised (EMB) and original (EMB_RAW) text
-                        union: ~120 candidates per S1, 99.3% pair recall
-  -> features           154 per pair: similarities, token overlap, competition ranks, label-free decoy signals
-  -> matcher            Stage 1 XGBoost (GPU) -> cross-encoder (multilingual-e5-base) -> Stage 2 XGBoost stacker
-  -> decision           one-to-one assignment + F0.5-tuned thresholds
-  -> matching_results.tsv, candidate_pairs.tsv
-```
+![Pipeline overview: input data, normalisation, blocking, features, matcher, decision](docs/pipeline.png)
+
+1. **Normalisation**: Indic romanisation, legal forms, DBA aliases, abbreviations, postal and house numbers.
+2. **Blocking**: six retrieval passes within each country label (ALL, NAME, ADDRESS and REVERSE keys, plus
+   multilingual-e5-small embeddings of the normalised and the original text). Their union gives about
+   120 candidates per S1 entity with 99.3% pair recall.
+3. **Features**: 154 per pair, covering similarity, token overlap, competition ranks and label-free decoy signals.
+4. **Matcher**: Stage 1 XGBoost on GPU, a multilingual-e5-base cross-encoder, then a Stage 2 XGBoost stacker.
+5. **Decision**: one-to-one assignment and F0.5-tuned thresholds.
+
 
 Three design principles:
 
