@@ -64,7 +64,7 @@ business-entity-resolution/
 git clone <repo-url> business-entity-resolution && cd business-entity-resolution
 python -m venv .venv && source .venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu121   # a CUDA build of PyTorch
-pip install -r requirements.txt
+pip install -r requirements.txt   
 ```
 
 Use **XGBoost 2.1.x**. XGBoost 3.x crashed at full scale on GPU (`CUDA_ERROR_INVALID_VALUE` in
