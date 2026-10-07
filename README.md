@@ -154,3 +154,10 @@ differ slightly between runs.
   learning it from non-holdout entities only would make validation fully label-clean.
 * About 0.67% of true pairs are missed by blocking; `blocking_misses.tsv` and `oof_errors.tsv` list
   concrete cases.
+
+## Leaderboard
+
+Final challenge leaderboard (28 September 2026): **score 0.983713, rank #727**. The last
+submission improved the score by 0.003876 and the rank by 402 places.
+
+![Leaderboard rank and score progression over 18 snapshots](docs/leaderboard.jpg)
